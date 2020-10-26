@@ -32,4 +32,6 @@ public interface CheckGroupService {
     PageResult<CheckGroup> findPage(QueryPageBean queryPageBean);
 
     void deleteById(int id) throws MyException;
+
+    List<CheckGroup> findAll();
 }

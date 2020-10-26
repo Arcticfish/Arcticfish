@@ -76,6 +76,12 @@ public class CheckgroupController {
         return new Result (true,MessageConstant.DELETE_CHECKGROUP_SUCCESS);
     }
 
+    @GetMapping("/findAll")
+    public Result findAll(){
+        List<CheckGroup> list=checkGroupService.findAll();
+        return new Result (true,MessageConstant.QUERY_CHECKGROUP_SUCCESS,list);
+    }
+
 
 
 }
