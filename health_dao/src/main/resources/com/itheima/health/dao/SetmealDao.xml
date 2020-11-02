@@ -54,6 +54,43 @@
     <delete id="deleteById" parameterType="int">
         delete from t_setmeal where id=#{id}
     </delete>
+    
+    <select id="findImgs" resultType="String">
+        select img from t_setmeal
+    </select>
+
+    <select id="findAll" resultType="setmeal">
+        select * From t_setmeal
+    </select>
+
+    <select id="findDetailById" parameterType="int" resultMap="setmealDetailResultMap">
+        select s.id,s.name,s.age,s.sex,s.remark,s.img,
+        sc.checkgroup_id,g.name checkgroup_name,g.remark checkgroup_remark,
+        cc.checkitem_id,ci.name checkitem_name
+        from t_setmeal s
+        left join t_setmeal_checkgroup sc on s.id=sc.setmeal_id
+        left join t_checkgroup g on sc.checkgroup_id=g.id
+        left join t_checkgroup_checkitem cc on g.id=cc.checkgroup_id
+        left join t_checkitem ci on cc.checkitem_id=ci.id
+        where s.id=#{id}
+    </select>
+    <resultMap id="setmealDetailResultMap" type="Setmeal">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="sex" column="sex"></result>
+        <result property="age" column="age"></result>
+        <result property="remark" column="remark"></result>
+        <result property="img" column="img"></result>
+        <collection property="checkGroups" ofType="CheckGroup">
+            <id property="id" column="checkgroup_id"></id>
+            <result property="name" column="checkgroup_name"></result>
+            <result property="remark" column="checkgroup_remark"></result>
+            <collection property="checkItems" ofType="CheckItem">
+                <id property="id" column="checkitem_id"></id>
+                <result property="name" column="checkitem_name"></result>
+            </collection>
+        </collection>
+    </resultMap>
 
 
 </mapper>

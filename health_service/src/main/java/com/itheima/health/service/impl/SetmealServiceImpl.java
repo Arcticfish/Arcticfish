@@ -85,4 +85,19 @@ public class SetmealServiceImpl implements SetmealService {
         // 再删除套餐
         setmealDao.deleteById(id);
     }
+
+    @Override
+    public List<String> findImgs() {
+
+        return setmealDao.fingImgs();
+    }
+
+    @Override
+    public List<Setmeal> findAll() {
+        return setmealDao.findAll();
+    }
+    @Override
+    public Setmeal findDetailById(int id) {
+        return setmealDao.findDetailById(id);
+    }
 }

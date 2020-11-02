@@ -24,4 +24,10 @@ public interface SetmealDao {
     int findOrderCountBySetmealId(int id);
 
     void deleteById(int id);
+
+    List<String> fingImgs();
+
+    List<Setmeal> findAll();
+
+    Setmeal findDetailById(int id);
 }
